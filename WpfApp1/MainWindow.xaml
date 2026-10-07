@@ -1,0 +1,43 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="WPF飲料訂購系統 - 進階檔案IO版" Height="650" Width="720">
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- 1. 載入 CSV 按鈕 -->
+        <Button Content="1. 開啟飲料 CSV 菜單檔案 (OpenFileDialog)" 
+                Click="btnLoadCsv_Click" Height="35" Margin="0,0,0,10" 
+                FontWeight="Bold" FontSize="14" Background="#E3F2FD"/>
+
+        <!-- 2. 用餐方式選擇 (內用 / 外帶) -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10" VerticalAlignment="Center">
+            <Label Content="用餐方式：" FontWeight="Bold" FontSize="14" VerticalAlignment="Center"/>
+            <RadioButton x:Name="rbDineIn" Content="內用" GroupName="DiningType" FontSize="14" VerticalAlignment="Center" Margin="10,0,15,0"/>
+            <RadioButton x:Name="rbTakeOut" Content="外帶" GroupName="DiningType" IsChecked="True" FontSize="14" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <!-- 3. 動態生成飲料品項容器 -->
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" Background="#FAFAFA" BorderBrush="#E0E0E0" BorderThickness="1" Margin="0,0,0,10" Padding="10">
+            <StackPanel x:Name="DrinkMenuStackPanel"/>
+        </ScrollViewer>
+
+        <!-- 4. 訂單明細顯示區 -->
+        <Border Grid.Row="3" Background="#FFFDE7" BorderBrush="#FFF59D" BorderThickness="1" Padding="10" CornerRadius="4">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <TextBlock x:Name="txtSummary" Text="請點擊上方按鈕載入菜單 CSV 檔案..." FontSize="13" Foreground="#333333" TextWrapping="Wrap"/>
+            </ScrollViewer>
+        </Border>
+
+        <!-- 5. 匯出訂單按鈕 -->
+        <Button Content="2. 結帳並匯出訂單文字檔 (SaveFileDialog)" 
+                Grid.Row="4" Click="btnSaveOrder_Click" Height="38" Margin="0,10,0,0" 
+                FontWeight="Bold" FontSize="14" Background="#E8F5E9"/>
+    </Grid>
+</Window>
